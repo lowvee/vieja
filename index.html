@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Día Mamá ❤️</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+background:linear-gradient(135deg,#ff8fab,#ffc2d1);
+}
+
+/* 🌸 FONDO AESTHETIC */
+
+.background{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+overflow:hidden;
+z-index:-1;
+background:linear-gradient(135deg,#ff8fab,#ffc2d1,#ffe5ec);
+background-size:400% 400%;
+animation:fondoAnimado 12s ease infinite;
+}
+
+.background::before,
+.background::after{
+content:"";
+position:absolute;
+width:600px;
+height:600px;
+border-radius:50%;
+background:rgba(255,255,255,0.15);
+animation:float 10s infinite ease-in-out;
+filter:blur(40px);
+}
+
+.background::before{
+top:-200px;
+left:-150px;
+}
+
+.background::after{
+bottom:-200px;
+right:-150px;
+animation-delay:5s;
+}
+
+@keyframes fondoAnimado{
+0%{
+background-position:0% 50%;
+}
+50%{
+background-position:100% 50%;
+}
+100%{
+background-position:0% 50%;
+}
+}
+
+@keyframes float{
+0%{
+transform:translateY(0px) translateX(0px);
+}
+50%{
+transform:translateY(-30px) translateX(20px);
+}
+100%{
+transform:translateY(0px) translateX(0px);
+}
+}
+
+/* 🌸 PÉTALOS */
+
+.petal{
+position:fixed;
+top:-10px;
+font-size:25px;
+pointer-events:none;
+animation:fall linear forwards;
+z-index:2;
+opacity:0.8;
+}
+
+@keyframes fall{
+
+0%{
+transform:translateY(-10vh) rotate(0deg);
+opacity:0;
+}
+
+10%{
+opacity:1;
+}
+
+100%{
+transform:translateY(110vh) translateX(100px) rotate(360deg);
+opacity:0;
+}
+
+}
+
+/* PANTALLA INICIAL */
+
+.start-screen{
+position:fixed;
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+background:linear-gradient(135deg,#ff8fab,#ffc2d1);
+z-index:100;
+transition:1s;
+}
+
+/* TEXTO */
+
+.start-screen h1{
+color:white;
+font-size:65px;
+font-family:"Brush Script MT",cursive;
+letter-spacing:3px;
+text-shadow:0 0 15px #ffb3c6;
+position:absolute;
+top:120px;
+text-align:center;
+}
+
+/* 🧸 OSITO */
+
+.valorant-circle{
+width:180px;
+height:180px;
+background:white;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+cursor:pointer;
+box-shadow:0 0 25px rgba(255,255,255,0.7);
+animation:latido 1.5s infinite;
+
+position:absolute;
+top:420px;
+left:50%;
+transform:translateX(-50%);
+}
+
+.bear-logo{
+width:100px;
+height:100px;
+object-fit:contain;
+}
+
+/* OCULTAR */
+
+.hide{
+opacity:0;
+pointer-events:none;
+}
+
+/* CARTA */
+
+.main{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+position:relative;
+}
+
+/* SOBRE */
+
+.wrapper{
+position:relative;
+width:350px;
+height:250px;
+cursor:pointer;
+z-index:5;
+}
+
+.envelope{
+position:absolute;
+width:100%;
+height:100%;
+}
+
+/* BASE */
+
+.base{
+position:absolute;
+width:100%;
+height:100%;
+background:#ff4d6d;
+border-radius:10px;
+overflow:hidden;
+}
+
+/* LADOS */
+
+.left{
+position:absolute;
+border-top:125px solid transparent;
+border-bottom:125px solid transparent;
+border-left:175px solid #ff6f91;
+z-index:2;
+}
+
+.right{
+position:absolute;
+right:0;
+border-top:125px solid transparent;
+border-bottom:125px solid transparent;
+border-right:175px solid #ff85a1;
+z-index:2;
+}
+
+.bottom{
+position:absolute;
+bottom:0;
+border-left:175px solid transparent;
+border-right:175px solid transparent;
+border-bottom:125px solid #ff4d6d;
+z-index:2;
+}
+
+/* TAPA */
+
+.top{
+position:absolute;
+top:0;
+border-left:175px solid transparent;
+border-right:175px solid transparent;
+border-top:125px solid #ffb3c6;
+transform-origin:top;
+transition:1s;
+z-index:5;
+}
+
+/* CARTA */
+
+.letter{
+position:absolute;
+width:90%;
+height:90%;
+background:white;
+left:5%;
+top:5%;
+border-radius:15px;
+padding:20px;
+text-align:center;
+transition:1s;
+z-index:1;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+
+overflow-y:auto;
+max-height:90%;
+}
+
+.letter h1{
+color:#ff4d6d;
+margin-bottom:15px;
+}
+
+.letter p{
+font-size:15px;
+line-height:1.6;
+color:#444;
+}
+
+/* ABRIR */
+
+.wrapper.open .top{
+transform:rotateX(180deg);
+z-index:0;
+}
+
+.wrapper.open .letter{
+transform:translateY(-140px);
+}
+
+/* CORAZON SOBRE */
+
+.sticker-heart{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:45px;
+z-index:10;
+animation:latido 1s infinite;
+}
+
+/* LATIDO */
+
+@keyframes latido{
+
+0%{
+transform:translate(-50%,-50%) scale(1);
+}
+
+50%{
+transform:translate(-50%,-50%) scale(1.15);
+}
+
+100%{
+transform:translate(-50%,-50%) scale(1);
+}
+
+}
+
+/* CORAZONES */
+
+.heart{
+position:absolute;
+font-size:20px;
+animation:subir 5s linear infinite;
+opacity:0;
+}
+
+@keyframes subir{
+
+0%{
+transform:translateY(0) scale(0.5);
+opacity:0;
+}
+
+50%{
+opacity:1;
+}
+
+100%{
+transform:translateY(-1200px) scale(1.5);
+opacity:0;
+}
+
+}
+
+/* RANITAS */
+
+.frog{
+position:absolute;
+font-size:35px;
+opacity:0.4;
+animation:floating 4s ease-in-out infinite;
+z-index:1;
+}
+
+.frog1{
+top:180px;
+left:90px;
+}
+
+.frog2{
+bottom:150px;
+right:120px;
+}
+
+@keyframes floating{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-10px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- 🌸 FONDO -->
+<div class="background"></div>
+
+<!-- 🎶 AUDIO -->
+<audio id="musica" preload="auto">
+  <source src="cancion.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PANTALLA INICIAL -->
+
+<div class="start-screen" id="startScreen">
+
+<h1>Feliz Día Mamá ❤️</h1>
+
+<div class="valorant-circle" onclick="enterLetter()">
+
+<img
+src="https://cdn-icons-png.flaticon.com/512/616/616408.png"
+class="bear-logo"
+>
+
+</div>
+
+<!-- RANITAS -->
+
+<div class="frog frog1">🐸</div>
+<div class="frog frog2">🐸</div>
+
+</div>
+
+<!-- CARTA -->
+
+<div class="main">
+
+<div class="wrapper" onclick="openLetter()">
+
+<div class="sticker-heart">💖</div>
+
+<div class="envelope">
+
+<div class="base"></div>
+
+<div class="left"></div>
+
+<div class="right"></div>
+
+<div class="bottom"></div>
+
+<div class="top"></div>
+
+<div class="letter">
+
+<h1>PA MI VIEJITA💖 </h1>
+
+<p>
+maaaaa feliz diaa te amo demasiado y quiero que en este dia especial lo pases de lo mejor con mi hermano, david, conmigo y sentirte bien contigo misma.
+Tu bien sabes que yo no soy tanto de expresarme UFF pero por esta ocasion saldre d mi zona de confort para decirte lo mucho que te amo y lo importante que eres para mi, gracias por todo lo que haces conmigo de verdad muchisimas gracias, gracias por tenerme paciencia a pesar de que estoy en la adolescencia y te hago renegar mucho, gracias por ser tan buena conmigo, gracias por ser mi viejita, gracias por todo en lo que me apoyas, gracias por lo que me das, gracias por ser muy fuerte a pesar de las situaciones que hemos pasado, o mejor dicho que tu has pasado en un momento de tu vida con mi hermano, gracias por ser tal y como eres, gracias por los consejos que me das aunque aveces piensas que te ignoro, gracias por siempre tenerme presente en cada momento de tu vida, gracias por ser tan cariñosa, amorosa, graciosa, aveces hablar piedras como tu lo dices, renegona pero aun asi teamo, quiero pedirte perdon por todo lo que te hago renegar porque en este dia quiero que lo pases bien y no tengas nada de rencor o alguna molestia conmigo por una actitud que tuve en cualquier momento haciendo sentir mal o contestandote mal, nunca cambies tu forma de ser no importa lo que diga la gente, se tu misma, eres una persona a la cual admiro y amo demasiado y no quisiera que cambies de un dia para otro solo por unas palabras de otras personas, y bueno te preguntaras porque hago una carta aun sabiendo que yo no soy tanto de estas cosas pero quise hacer el intento de decirte lo que siento por ti y aparte pues para que veas que todo lo que hago en la computadora o a escondidas no siempre es estar jugando o perdiendo el tiempo asi como lo dicen ustedes, quiza no sera algo grande o algo material lo que te de pero quiero que sepas que te lo hago con amor y la mejor intencion que te sientas bien conmigo, gracias por estar conmigo en el momento quiza mas raro y dificil de mi vida cuando tuve el percanse de lo del hospital, gracias por no dejarme solo y hacerme sentir que tengo tu apoyo y tambien los de david y de mi hermano, se que fue algo duro para ti mentalmente porque quiza pensabas que pasaria a algo peor pero, mirame, estoy contigo, todo salio bien gracias a Dios, no quisiera tocar este tema pero lo hago porque nunca te lo hice saber ya que sabras que no soy tanto de hablar cosas que te vayan a molestar o hacer sentir mal.
+Te amo mucho viejita espero que este dia lo pases de lo mejor con nosotros, nunca dudes de que siempre vas a tener mi apoyo, no importa sea en los mas minimo, siempre te voy a apoydar en todo lo que te progongas, siempre estare dispuesto a ayudarte a cualquier cosa, y si nesecitas algo o pedirme ayuda, nunca sientas que no puedes contar conmigo porque aunque pienses que lo hago de mala gana lo hago con la mejor intencion(aunque no paresca) la verdad ma ni con esta carta te puedo expresar todo el amor que siento por ti pero ya almenos algo se me salio, eres la mejor mamá del mundo y nunca lo dudes, se que tu no tendras a tu madre presente en vida, pero tu bien sabes de que ella estaria orgullosa por todo lo que lograste y por todo el camino que recorriste siento una persona que persistio en lo bueno y en lo malo.
+la vida es muy dura y tu bien lo sabes, pero quiero que sepas que tu vas a cumplir todos tus sueños y metas que tienes propuestas, bien sabes que tienes el apoyo de David que es una gran persona y te ama mucho y siempre estara para cuando a lo nesecites, la verdad nose ni de donde me salieron estas palabras pero lo poco que te digo, es con todo mi cariño, te amo mucho viejita, y espero que la pases bien en tu dia. 
+
+</p>
+
+<br>
+
+<p>
+comprame mi hamburguesa pue
+y perdon por los errores ortograficos esq en no hay autocorrector 😆
+</p>
+
+<br>
+
+<strong>
+att tu pelucon
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* 🎶 MÚSICA */
+
+let musica=document.getElementById("musica");
+let started=false;
+
+function startMusic(){
+
+if(started) return;
+
+musica.volume=0.5;
+
+musica.play().then(()=>{
+started=true;
+}).catch(()=>{});
+
+}
+
+/* 💌 ENTRAR */
+
+function enterLetter(){
+
+document.getElementById("startScreen")
+.classList.add("hide");
+
+}
+
+/* 💖 ABRIR CARTA */
+
+function openLetter(){
+
+startMusic();
+
+document.querySelector(".wrapper")
+.classList.toggle("open");
+
+}
+
+/* 🌸 COLORES PASTEL */
+
+const colors=[
+"#ffb3c6",
+"#ffc8dd",
+"#ffd6e0",
+"#ffe5ec",
+"#ffcad4"
+];
+
+/* ❤️ CORAZONES */
+
+function createHeart(){
+
+const heart=document.createElement("div");
+
+heart.classList.add("heart");
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.top="100vh";
+
+heart.style.color=
+colors[Math.floor(Math.random()*colors.length)];
+
+heart.style.fontSize=
+(Math.random()*30+20)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},5000);
+
+}
+
+setInterval(createHeart,100);
+
+/* 🌸 PÉTALOS */
+
+function createPetal(){
+
+const petal=document.createElement("div");
+
+petal.classList.add("petal");
+
+petal.innerHTML="🌸";
+
+petal.style.left=Math.random()*100+"vw";
+
+petal.style.animationDuration=
+(Math.random()*5+5)+"s";
+
+petal.style.fontSize=
+(Math.random()*20+20)+"px";
+
+document.body.appendChild(petal);
+
+setTimeout(()=>{
+petal.remove();
+},10000);
+
+}
+
+setInterval(createPetal,500);
+
+</script>
+
+</body>
+</html>
